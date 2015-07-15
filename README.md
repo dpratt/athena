@@ -13,30 +13,28 @@ What doesn't work yet -
 
 ## Using Athena
 
-[sonatype]: https://oss.sonatype.org/index.html
+[bintray]: https://dl.bintray.com/dpratt/maven/
 
-Binary release artifacts for Scala 2.11.x and 2.10.x are published to the [Sonatype Maven Repository][sonatype]
-and synced to Maven Central. The current release is only available as a SNAPSHOT (for now), but the final 0.3.0
-release is imminent.
+Binary release artifacts for Scala 2.11.x and 2.10.x are published to [Bintray][bintray]. It is not currently synced with JCenter or Maven Central, but that's on the roadmap to accomplish soon.
 
 ### SBT builds
 ```scala
 libraryDependencies ++= Seq(
-  "com.vast" %% "athena" % "0.3.0-SNAPSHOT"
+  "io.athena" %% "athena" % "0.4.0"
 )
 ```
 
 ### Maven builds
 ```xml
 <properties>
-    <scala.major.version>2.10</scala.major.version>
+    <scala.major.version>2.11</scala.major.version>
 </properties>
 
 <dependencies>
     <dependency>
-        <groupId>com.vast</groupId>
+        <groupId>io.athena</groupId>
         <artifactId>athena_${scala.major.version}</artifactId>
-        <version>0.3.0-SNAPSHOT</version>
+        <version>0.4.0</version>
     </dependency>
 </dependencies>
 ```
