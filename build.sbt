@@ -1,10 +1,10 @@
-organization := "com.vast"
+organization := "io.athena"
 
 name := "athena"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
-crossScalaVersions := Seq("2.11.6", "2.10.5")
+crossScalaVersions := Seq("2.11.7", "2.10.5")
 
 description := "A fully nonblocking and asynchronous client library for Cassandra."
 

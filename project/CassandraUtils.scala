@@ -7,7 +7,6 @@ import sbt._
 import sbt.Keys._
 
 import scala.collection.JavaConversions._
-import com.vast.sbtlogger.SbtLogger
 
 import scala.util.control.NonFatal
 
@@ -203,26 +202,24 @@ object CassandraUtils {
   }
 
   private def setupInstance(host: String, port: Int, schemaFile: File, log: Logger) = {
-    SbtLogger.withLogger(log) {
-      log.info(s"Initializing instance with file ${schemaFile.getAbsolutePath}")
+	  log.info(s"Initializing instance with file ${schemaFile.getAbsolutePath}")
 
-      val cluster = Cluster.builder()
-        .addContactPoint(host)
-        .withPort(port)
-        .build()
-      try {
-        val session = cluster.connect()
-        IO.read(schemaFile).split(";").foreach { query =>
-          val trimmed = query.trim
-          if(!trimmed.isEmpty) {
-            session.execute(trimmed)
-          }
-        }
-        session.close()
-      } finally {
-        cluster.close()
-      }
-    }
+	  val cluster = Cluster.builder()
+	    .addContactPoint(host)
+	    .withPort(port)
+	    .build()
+	  try {
+	    val session = cluster.connect()
+	    IO.read(schemaFile).split(";").foreach { query =>
+	      val trimmed = query.trim
+	      if(!trimmed.isEmpty) {
+	        session.execute(trimmed)
+	      }
+	    }
+	    session.close()
+	  } finally {
+	    cluster.close()
+	  }
   }
 
   private def resolveCassandraHome(distributionHome: File, version: String): File = {
