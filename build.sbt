@@ -11,8 +11,6 @@ description := "A fully nonblocking and asynchronous client library for Cassandr
 // Force compilation in java 1.6
 javacOptions in Compile ++= Seq("-source", "1.6", "-target", "1.6")
 
-resolvers += Resolver.typesafeRepo("releases")
-
 def akka(artifact: String) = "com.typesafe.akka" %% ("akka-" + artifact) % "2.3.11"
 
 def play(artifact: String) = "com.typesafe.play" %% ("play-" + artifact) % "2.3.9"
