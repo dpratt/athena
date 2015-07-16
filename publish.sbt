@@ -1,10 +1,10 @@
-licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+licenses in ThisBuild += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html"))
 
-homepage := Some(url("https://github.com/vast-engineering"))
+homepage in ThisBuild := Some(url("https://github.com/dpratt"))
 
-startYear := Some(2013)
+startYear in ThisBuild := Some(2013)
 
-pomExtra := {
+pomExtra in ThisBuild := {
 	<developers>
 	  <developer>
 	    <id>david.pratt@gmail.com</id>
@@ -14,7 +14,7 @@ pomExtra := {
 	</developers>
 }
 
-scmInfo := Some(
+scmInfo in ThisBuild := Some(
   ScmInfo(
     url("https://github.com/dpratt/athena"),
     "scm:git:github.com/dpratt/athena",
@@ -24,4 +24,4 @@ scmInfo := Some(
 
 bintrayReleaseOnPublish in ThisBuild := false
 
-bintrayPackageLabels := Seq("cassandra", "driver", "scala", "akka")
+bintrayPackageLabels in ThisBuild := Seq("cassandra", "driver", "scala", "akka")

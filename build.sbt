@@ -1,29 +1,21 @@
-organization := "io.athena"
+organization in ThisBuild := "io.athena"
+
+scalaVersion in ThisBuild := "2.11.7"
+
+crossScalaVersions in ThisBuild := Seq("2.11.7", "2.10.5")
 
 name := "athena"
-
-scalaVersion := "2.11.7"
-
-crossScalaVersions := Seq("2.11.7", "2.10.5")
 
 description := "A fully nonblocking and asynchronous client library for Cassandra."
 
 // Force compilation in java 1.6
-javacOptions in Compile ++= Seq("-source", "1.6", "-target", "1.6")
+javacOptions in Compile in ThisBuild ++= Seq("-source", "1.6", "-target", "1.6")
 
-def akka(artifact: String) = "com.typesafe.akka" %% ("akka-" + artifact) % "2.3.11"
+//Don't publish the root project
+publishArtifact := false
+publish := {}
+publishLocal := {}
 
-def play(artifact: String) = "com.typesafe.play" %% ("play-" + artifact) % "2.3.9"
+lazy val core = Project("athena-core", file("core"))
 
-libraryDependencies ++= Seq(
-  akka("actor"),
-  play("json"),
-  play("iteratees"),
-  "com.typesafe" % "config" % "1.2.1",
-  "org.scalatest" %% "scalatest" % "2.2.2" % "test",
-  "ch.qos.logback" % "logback-classic" % "1.1.2" % "test",
-  akka("slf4j") % "test",
-  akka("testkit") % "test"
-)
-
-CassandraUtils.cassandraTestSettings
+lazy val client = Project("athena-client", file("client")).dependsOn(core)

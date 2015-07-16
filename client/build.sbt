@@ -1,0 +1,2 @@
+name := "athena-client"
+
